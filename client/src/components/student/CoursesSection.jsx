@@ -8,8 +8,8 @@ const CoursesSection = () => {
 
   return (
     <div className='py-16 md:px-40 px-8'>
-      <h2 className='text-3xl font-medium text-gray-800'>Learn from the best</h2>
-      <p className='text-sm md:text-base text-gray-500 mt-3'>
+      <h2 className='text-3xl font-medium text-white'>Learn from the teachers you choose</h2>
+      <p className='text-sm md:text-base text-gray-300 mt-3'>
         Explore our wide range of courses designed to help you achieve your career goals. Whether you're looking to enhance your skills,<br /> dive into a new field, or get certified. Start your journey today and unlock endless possibilities!
       </p>
 
@@ -19,7 +19,7 @@ const CoursesSection = () => {
         ))}
       </div>
 
-      <Link to={'/course-list'} onClick={() => scrollTo(0, 0)} className='text-gray-500 border border-gray-500/30 px-10 py-3 rounded'>
+      <Link to={'/course-list'} onClick={() => scrollTo(0, 0)} className='text-gray-300 border border-gray-500/30 px-10 py-3 rounded'>
         Show all courses
       </Link>
     </div>

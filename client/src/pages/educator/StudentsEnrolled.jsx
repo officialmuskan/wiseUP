@@ -13,7 +13,7 @@ const StudentsEnrolled = () => {
   const fetchEnrolledStudents = async () => {
     try {
       const token = await getToken();
-      const { data } = await axios.get('/api/educator/enrolled-students', 
+      const { data } = await axios.get('http://localhost:5000/api/educator/enrolled-students', 
         {headers: { Authorization: `Bearer ${token}` }}
       )
 
@@ -35,10 +35,10 @@ const StudentsEnrolled = () => {
   }, [isEducator])
 
   return enrolledStudents ? (
-    <div className='min-h-screen flex flex-col items-start justify-between md:p-8 md:pb-0 p-4 pt-8 pb-0'>
+    <div className='min-h-screen flex flex-col items-start justify-between md:p-8 bg-zinc-900 md:pb-0 p-4 pt-8 pb-0'>
       <div className='flex flex-col items-center max-w-4xl w-full overflow-hidden rounded-md bg-white border border-gray-500/20'>
       <table className='table-fixed md:table-auto w-full overflow-hidden pb-4'>
-        <thead className='text-gray-900 border-b border-gray-500/20 text-sm text-left'>
+        <thead className='text-gray-200 bg-zinc-900 border-b border-gray-500/20 text-sm text-left'>
         <tr>
           <th className='px-4 py-3 font-semibold text-center hidden sm:table-cell'>#</th>
           <th className='px-4 py-3 font-semibold'>Student Name</th>
@@ -46,7 +46,7 @@ const StudentsEnrolled = () => {
           <th className='px-4 py-3 font-semibold hidden sm:table-cell'>Date</th>
         </tr>
         </thead>
-        <tbody className='text-sm text-gray-500'>
+        <tbody className='text-sm text-gray-300'>
           {enrolledStudents.map((item, index) => (
             
             <tr key={index} className='border-b border-gray-500/20'>

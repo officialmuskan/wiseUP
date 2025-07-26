@@ -23,7 +23,7 @@ const App = () => {
   const isEducatorRoute = location.pathname.startsWith('/educator');
 
   return (
-    <div className='text-default min-h-screen bg-white'>
+    <div className='text-default min-h-screen'>
       <ToastContainer/>
       {!isEducatorRoute && <Navbar/>}
       <Routes>

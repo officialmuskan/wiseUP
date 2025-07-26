@@ -6,7 +6,7 @@ export const protectEducator = async (req, res, next) => {
     const userId = req.auth.userId;
     const response = await clerkClient.users.getUser(userId);
     const role = response.publicMetadata?.role;
-
+    console.log("User Role:", role);
     if (role !== 'educator') {
       return res.status(403).json({
         success: false,
@@ -19,6 +19,7 @@ export const protectEducator = async (req, res, next) => {
 
     next();
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message });
+    console.error("Protect Educator Middleware Error:", error);
+    res.status(500).json({ success: false, message: error.message + 'jiie' });
   }
 };

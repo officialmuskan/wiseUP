@@ -31,7 +31,7 @@
     
     --font-default: 15px;
     --leading-default: 21px;
-
+    background-color: #252525;
     --spacing-section-height: 500px; /* ✅ Added spacing variable */
   }
 }

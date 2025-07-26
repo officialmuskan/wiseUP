@@ -33,8 +33,8 @@ const CoursesList = () => {
     <div className='relative md:px-36 px-8 pt-20 text-left'>
       <div className='flex md:flex-row flex-col gap-6 items-start justify-between w-full'>
         <div>
-        <h1 className='text-4xl font-semibold text-gray-800'>Course List</h1>
-        <p className='text-gray-500'>
+        <h1 className='text-4xl font-semibold text-gray-300'>Course List</h1>
+        <p className='text-gray-300'>
           <span className='text-blue-600 cursor-pointer' onClick={() => navigate('/')}>Home</span> / <span onClick={() => navigate('/course-list')}>Course List</span></p>
         </div>
         <SearchBar data={input}/>

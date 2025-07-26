@@ -23,14 +23,61 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+// export const updateRoleToEducator = async (req, res) => {
+//   try {
+//     const userId = req.auth.userId;
+//     console.log("User ID:", userId);
+//     console.log("User ID:", userId);
+//     const otp = Math.floor(100000 + Math.random() * 900000).toString();
+//     const expiresAt = Date.now() + 5 * 60 * 1000; // OTP valid for 5 mins
+
+//     educatorOTPs[userId] = { otp, expiresAt };
+
+//     await clerkClient.users.updateUserMetadata(userId, {
+//       publicMetadata: { role: 'pending-educator' },
+//     });
+
+//     const user = await clerkClient.users.getUser(userId);
+//     const email = user.emailAddresses?.[0]?.emailAddress || 'N/A';
+//     const name = `${user.firstName || ''} ${user.lastName || ''}`.trim();
+
+//     const mailOptions = {
+//       from: proces.env.ADMIN_EMAIL,
+//       to: process.env.ADMIN_EMAIL, // Send OTP to admin
+//       subject: 'New Educator Approval Request',
+//       html: `
+//         <h2>New Educator Request</h2>
+//         <p><strong>Name:</strong> ${name}</p>
+//         <p><strong>Email:</strong> ${email}</p>
+//         <p><strong>User ID:</strong> ${userId}</p>
+//         <p><strong>OTP for approval:</strong> <b style="font-size: 20px">${otp}</b></p>
+//         <p>This OTP will expire in <b>5 minutes</b>.</p>
+//       `,
+//     };
+
+//     await transporter.sendMail(mailOptions);
+
+//     res.json({ success: true, message: 'OTP sent to admin for approval.' });
+//   } catch (error) {
+//     res.json({ success: false, message: error.message });
+//   }
+// };
 export const updateRoleToEducator = async (req, res) => {
   try {
+    console.log("UpdateRole called");
+    if (!req.auth || !req.auth.userId) {
+      return res.status(401).json({ success: false, message: "Unauthorized: userId missing" });
+    }
+
     const userId = req.auth.userId;
     console.log("User ID:", userId);
-    console.log("User ID:", userId);
-    const otp = Math.floor(100000 + Math.random() * 900000).toString();
-    const expiresAt = Date.now() + 5 * 60 * 1000; // OTP valid for 5 mins
 
+    if (!process.env.ADMIN_EMAIL) {
+      throw new Error("ADMIN_EMAIL not set in environment variables");
+    }
+
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    const expiresAt = Date.now() + 5 * 60 * 1000;
     educatorOTPs[userId] = { otp, expiresAt };
 
     await clerkClient.users.updateUserMetadata(userId, {
@@ -43,7 +90,7 @@ export const updateRoleToEducator = async (req, res) => {
 
     const mailOptions = {
       from: process.env.ADMIN_EMAIL,
-      to: process.env.ADMIN_EMAIL, // Send OTP to admin
+      to: process.env.ADMIN_EMAIL,
       subject: 'New Educator Approval Request',
       html: `
         <h2>New Educator Request</h2>
@@ -59,7 +106,8 @@ export const updateRoleToEducator = async (req, res) => {
 
     res.json({ success: true, message: 'OTP sent to admin for approval.' });
   } catch (error) {
-    res.json({ success: false, message: error.message });
+    console.error("UpdateRole error:", error);
+    res.status(500).json({ success: false, message: error.message });
   }
 };
 
@@ -115,6 +163,7 @@ export const verifyEducatorOTP = async (req, res) => {
 export const addCourse = async (req, res) => {
   try {
     const { courseData } = req.body;
+    console.log("Course Data:", courseData);
     const imageFile = req.file;
     const educatorId = req.auth.userId;
 
@@ -131,6 +180,7 @@ export const addCourse = async (req, res) => {
 
     res.json({ success: true, message: 'Course Added' });
   } catch (error) {
+    console.error("Error in addCourse:", error);
     res.json({ success: false, message: error.message });
   }
 };

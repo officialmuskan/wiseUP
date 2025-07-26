@@ -20,7 +20,7 @@ const CourseDetails = () => {
 
   const fetchCourseData = async () => {
     try {
-      const { data } = await axios.get('/api/course/' + id)
+      const { data } = await axios.get('http://localhost:5000/api/course/' + id)
 
       if(data.success){
         setCourseData(data.courseData)
@@ -44,7 +44,7 @@ const CourseDetails = () => {
       }
 
       const token = await getToken();
-      const { data } = await axios.post('/api/user/purchase', { courseId: courseData._id }, { headers: { Authorization: `Bearer ${token}` }})
+      const { data } = await axios.post('http://localhost:5000/api/user/purchase', { courseId: courseData._id }, { headers: { Authorization: `Bearer ${token}` }})
 
       if(data.success){
         const { session_url } = data;
@@ -82,7 +82,7 @@ const CourseDetails = () => {
         <div className="absolute top-0 left-0 w-full h-section-height bg-gradient-to-b from-cyan-100/70"></div>
 
         {/* left column */}
-        <div className="max-w-xl z-10 text-gray-500">
+        <div className="max-w-xl z-10 text-gray-300">
           <h1 className="text-course-details-heading-large md:text-course-details-heading-large font-semibold text-gray-800">
             {courseData.courseTitle}
           </h1>
@@ -111,10 +111,10 @@ const CourseDetails = () => {
               ))}
             </div>
             <p className="text-blue-600">({courseData.courseRatings.length} {courseData.courseRatings.length > 1 ? 'ratings' : 'rating'})</p>
-            <p className="text-gray-500">{courseData.enrolledStudents.length} {courseData.enrolledStudents.length > 1 ? 'students' : 'student'}</p>
+            <p className="text-gray-300">{courseData.enrolledStudents.length} {courseData.enrolledStudents.length > 1 ? 'students' : 'student'}</p>
           </div>
 
-          <p className="text-sm">Course by <span className="text-blue-600 underline">{courseData.educator.name}</span></p>
+          <p className="text-sm">Course by <span className="text-blue-600 underline">{courseData?.educator?.name}</span></p>
 
           <div className="pt-8 text-gray-800">
             <h2 className="text-xl font-semibold">Course Structure</h2>
@@ -192,11 +192,11 @@ const CourseDetails = () => {
 
             <div className="flex gap-3 items-center pt-2">
               <p className="text-gray-800 md:text-4xl text-2xl font-semibold">{currency}{(courseData.coursePrice - courseData.discount * courseData.coursePrice / 100).toFixed(2)}</p>
-              <p className="md:text-lg text-gray-500 line-through">{currency}{courseData.coursePrice}</p>
-              <p className="md:text-lg text-gray-500">{courseData.discount}% off</p>
+              <p className="md:text-lg text-gray-300 line-through">{currency}{courseData.coursePrice}</p>
+              <p className="md:text-lg text-gray-300">{courseData.discount}% off</p>
             </div>
 
-            <div className="flex items-center text-sm md:text-default gap-4 pt-2 md:pt-4 text-gray-500">
+            <div className="flex items-center text-sm md:text-default gap-4 pt-2 md:pt-4 text-gray-300">
               <div className="flex items-center gap-1">
                 <img src={assets.star} alt="star icon" />
                 <p>{calculateRating(courseData)}</p>
@@ -224,7 +224,7 @@ const CourseDetails = () => {
 
             <div className="pt-6">
               <p className="md:text-xl text-lg font-medium text-gray-800">What's in the course?</p>
-              <ul className="ml-4 pt-2 text-sm md:text-default list-disc text-gray-500">
+              <ul className="ml-4 pt-2 text-sm md:text-default list-disc text-gray-300">
                 <li>Lifetime access with free updates.</li>
                 <li>step-by-step, hands-on project guidance.</li>
                 <li>Downloadable resources and source code.</li>

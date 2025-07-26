@@ -6,7 +6,7 @@ const OtpModal = ({ otp, setOtp, onVerify, onClose }) => {
       <div className="bg-white rounded-xl shadow-lg p-6 w-[90%] max-w-sm text-center relative">
         <button
           onClick={onClose}
-          className="absolute top-2 right-2 text-gray-500 hover:text-black"
+          className="absolute top-2 right-2 text-gray-300 hover:text-black"
         >
           ✕
         </button>

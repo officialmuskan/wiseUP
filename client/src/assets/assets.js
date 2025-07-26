@@ -13,7 +13,7 @@ import course_1_thumbnail from './course_1.png'
 import course_2_thumbnail from './course_2.png'
 import course_3_thumbnail from './course_3.png'
 import course_4_thumbnail from './course_4.png'
-import edustack_logo_dark from './edustack_logo_dark.png'
+// import wiseup_logo_dark from './wiseup_logo_dark.png'
 import star from './rating_star.svg'
 import star_blank from './star_dull_icon.svg'
 import profile_img_1 from './profile_img_1.png'
@@ -43,12 +43,11 @@ import profile_img from './profile_img.png'
 import profile_img2 from './profile_img2.png'
 import profile_img3 from './profile_img3.png'
 import lesson_icon from './lesson_icon.svg'
-import eduStack_logo from './edustack_logo.png'
-
+// import wiseUp_logo from './wiseup_logo.png'
+// 
 
 export const assets = {
-    edustack_logo_dark,
-    eduStack_logo,
+    
     logo,
     search_icon,
     sketch,
@@ -111,21 +110,21 @@ export const dummyTestimonial = [
         role: 'SWE 1 @ Amazon',
         image: assets.profile_img_1,
         rating: 5,
-        feedback: 'I\'ve been using Imagify for nearly two years, primarily for Instagram, and it has been incredibly user-friendly, making my work much easier.',
+        feedback: 'WiseUp has been my go-to for the past two years. Its intuitive design and expert-led content have made continuous learning both accessible and enjoyable.',
     },
     {
         name: 'Richard Nelson',
         role: 'SWE 2 @ Samsung',
         image: assets.profile_img_2,
         rating: 4,
-        feedback: 'I\'ve been using Imagify for nearly two years, primarily for Instagram, and it has been incredibly user-friendly, making my work much easier.',
+        feedback: 'WiseUp has been part of my journey for almost two years — each course a step, each lesson a spark. Learning here feels personal and empowering.',
     },
     {
         name: 'James Washington',
         role: 'SWE 2 @ Google',
         image: assets.profile_img_3,
         rating: 4.5,
-        feedback: 'I\'ve been using Imagify for nearly two years, primarily for Instagram, and it has been incredibly user-friendly, making my work much easier.',
+        feedback: 'Been using WiseUp for close to two years now, mostly to build my skills on the side. Super easy to use and actually makes learning enjoyable',
     },
 ];
 

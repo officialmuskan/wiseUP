@@ -18,18 +18,18 @@ const SearchBar = ({data}) => {
 
 
   return (
-    <form onSubmit={onSearchHandler} className='max-w-xl w-full h-12 flex items-center bg-white rounded-full shadow-md px-3 relative'>
+    <form onSubmit={onSearchHandler} className='max-w-xl w-full h-12 justify-center flex items-center bg-zinc-900 rounded-full shadow-md px-3 relative'>
       <img src={assets.search_icon} alt="search_icon" className='md:w-auto w-10 px-3' />
       <input 
         onChange={(e) => setInput(e.target.value)}
         value={input}
         type="text" 
         placeholder='Search for courses' 
-        className='w-full h-full outline-none text-gray-500/80 rounded-full px-4' 
+        className='w-full h-full outline-none text-gray-300/80 rounded-full px-4' 
       />
       <button 
         type='submit' 
-        className='bg-blue-600 text-white rounded-full md:px-8 px-6 md:py-3 py-2 absolute right-0 top-1/2 transform -translate-y-1/2'>
+        className='bg-cyan-600 text-white rounded-full md:px-8 px-6 md:py-3 py-2 absolute right-0 top-1/2 transform -translate-y-1/2'>
         Search
       </button>
     </form>

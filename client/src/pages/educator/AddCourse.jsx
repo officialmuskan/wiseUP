@@ -116,7 +116,7 @@ const AddCourse = () => {
       formData.append('image', image)
 
       const token = await getToken();
-      const { data } = await axios.post('/api/educator/add-course', formData,
+      const { data } = await axios.post('http://localhost:5000/api/educator/add-course', formData,
         { headers: { Authorization: `Bearer ${token}` }})
 
       if(data.success){
@@ -148,8 +148,8 @@ const AddCourse = () => {
 
 
   return (
-    <div className='h-screen overflow-scroll flex flex-col items-start justify-between md:p-8 md:pb-0 p-4 pt-8 pb-0'>
-      <form onSubmit={handleSubmit} className='flex flex-col gap-4 max-w-md w-full text-gray-500'>
+    <div className='h-screen overflow-scroll flex flex-col items-start justify-between md:p-8 md:pb-0 p-4 pt-8 pb-0 bg-zinc-900'>
+      <form onSubmit={handleSubmit} className='flex flex-col gap-4 max-w-md w-full text-gray-300'>
         <div className='flex flex-col gap-1'>
           <p>Course Title</p>
           <input onChange={e => setCourseTitle(e.target.value)} value={courseTitle} type='text' placeholder='Type here' className='outline-none md:py-2.5 py-2 px-3 rounded border border-gray-500' required />
@@ -167,7 +167,7 @@ const AddCourse = () => {
           </div>
 
           <div className='flex md:flex-row flex-col items-center gap-3'>
-            <p>Course Thumbnail</p>
+            <p className=''>Course Thumbnail</p>
             <label htmlFor="thumbnailImage" className='flex items-center gap-3'>
               <img src={assets.file_upload_icon} alt="" className='p-3 bg-blue-500 rounded' />
               <input type="file" id='thumbnailImage' onChange={e => setImage(e.target.files[0])} accept='image/*' hidden />
@@ -184,7 +184,7 @@ const AddCourse = () => {
         {/* Adding Chapters & Lectures */}
         <div>
           {chapters.map((chapter, chapterIndex) => (
-            <div key={chapterIndex} className='bg-white border rounded-lg mb-4'>
+            <div key={chapterIndex} className='bg-zinc-800 border rounded-lg mb-4'>
               <div className='flex justify-between items-center p-4 border-b'>
                 <div className='flex items-center'>
                   <img onClick={() => handleChapter('toggle', chapter.chapterId)} src={assets.dropdown_icon} width={14} alt="" className={`mr-2 cursor-pointer transition-all ${chapter.collapsed && "-rotate-90"}`}/>
@@ -192,7 +192,7 @@ const AddCourse = () => {
                     {chapterIndex + 1} {chapter.chapterTitle}
                   </span>
                 </div>
-                <span className='text-gray-500'>{chapter.chapterContent.length} Lectures</span>
+                <span className='text-gray-300'>{chapter.chapterContent.length} Lectures</span>
                 <img src={assets.cross_icon} alt="" className='cursor-pointer' onClick={() => handleChapter('remove', chapter.chapterId)}/>
               </div>
               {!chapter.collapsed && (
@@ -205,19 +205,19 @@ const AddCourse = () => {
                       <img src={assets.cross_icon} alt="" className='cursor-pointer' onClick={() => handleLecture('remove', chapter.chapterId, lectureIndex)} />
                     </div>
                   ))}
-                  <div className='inline-flex bg-gray-100 p-2 rounded cursor-pointer mt-2' onClick={
+                  <div className='inline-flex bg-cyan-800 p-2 rounded cursor-pointer mt-2' onClick={
                     () => handleLecture('add', chapter.chapterId)
                   }>+ Add Lecture</div>
                 </div>
               )}
             </div>
           ))}
-          <div className='flex justify-center items-center bg-blue-100 p-2 rounded-lg cursor-pointer' onClick={() => handleChapter('add')}>+ Add Chapter</div>
+          <div className='flex justify-center items-center bg-cyan-900 p-2 rounded-lg cursor-pointer' onClick={() => handleChapter('add')}>+ Add Chapter</div>
 
           {
             showPopup && (
-              <div className='fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50'>
-                <div className='bg-white text-gray-700 p-4 rounded relative w-full max-w-80'>
+              <div className='fixed inset-0 flex items-center justify-center bg-zinc-800 bg-opacity-50'>
+                <div className='bg-zinc-900 text-gray-400 p-4 rounded relative w-full max-w-80'>
                   <h2 className='text-lg font-semibold mb-4'>Add Lecture</h2>
 
                   <div className='mb-2'>
@@ -240,7 +240,7 @@ const AddCourse = () => {
                     <input type="checkbox" className='mt-1 scale-125' value={lectureDetails.isPreviewFree} onChange={(e) => setLectureDetails({...lectureDetails, isPreviewFree: e.target.checked})} />
                   </div>
 
-                  <button onClick={addLecture} type='button' className='w-full bg-blue-400 text-white px-4 py-2 rounded'>Add</button>
+                  <button onClick={addLecture} type='button' className='w-full bg-cyan-400 text-white px-4 py-2 rounded'>Add</button>
 
                   <img src={assets.cross_icon} alt="" onClick={() => setShowPopup(false)} className='absolute top-4 right-4 w-4 cursor-pointer'/>
 
@@ -250,7 +250,7 @@ const AddCourse = () => {
           }
         </div>
 
-        <button type='submit' className='bg-black text-white w-max py-2.5 px-8 rounded my-4'>ADD</button>
+        <button type='submit' className='bg-cyan-600 text-white w-max py-2.5 px-8 rounded my-4'>ADD</button>
 
       </form>
     </div>
